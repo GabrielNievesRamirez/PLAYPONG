@@ -2,10 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
-#include "sticks.h"       // Incluye sticks.h desde el directorio include
-#include "ball.h"
-#include "collision.h"
-#include "score.h"
+#include "Paddle.h"       // Cambiado a Paddle.h según la clase refactorizada
+#include "Ball.h"
+#include "Collision.h"
+#include "Score.h"
 #include "GameOver.h"
 
 using namespace sf;
@@ -28,24 +28,24 @@ int main() {
     window.setKeyRepeatEnabled(true);
     window.setVerticalSyncEnabled(false);
 
-    // Initilaizing Paddles
+    // Initializing Paddles
     Paddle paddles[2];
-    paddles[0].pos = Vector2f(20, 305);
-    paddles[1].pos = Vector2f(W - 20 - 20, 305);
-    paddles[0].initPaddles("stick_1.png");
-    paddles[1].initPaddles("stick_2.png");
-    paddles[0].speed = 1.f;
-    paddles[1].speed = 1.f;
-    paddles[0].dir = 2;
-    paddles[1].dir = 2;
-    paddles[0].score = 0;
-    paddles[1].score = 0;
+    paddles[0].setPosition(Vector2f(20, 305));
+    paddles[1].setPosition(Vector2f(W - 20 - 20, 305));
+    paddles[0].initPaddle("stick_1.png");
+    paddles[1].initPaddle("stick_2.png");
+    paddles[0].setSpeed(1.f);
+    paddles[1].setSpeed(1.f);
+    paddles[0].setDirection(2);
+    paddles[1].setDirection(2);
+    paddles[0].setScore(0);
+    paddles[1].setScore(0);
 
     // Initializing Ball
     Ball ball;
-    ball.pos = Vector2f(626, 346);
+    ball.setPosition(Vector2f(626, 346));
     ball.initBall("ball.png");
-    ball.speed = Vector2f(0, 0);
+    ball.setSpeed(Vector2f(0, 0));
 
     // Score Text
     Texture scText;
@@ -67,13 +67,13 @@ int main() {
         window.clear(Color::Black);
 
         // Game Input Logic
-        if (Keyboard::isKeyPressed(Keyboard::W)) paddles[0].dir = 0;
-        else if (Keyboard::isKeyPressed(Keyboard::S)) paddles[0].dir = 1;
-        else paddles[0].dir = 2;
+        if (Keyboard::isKeyPressed(Keyboard::W)) paddles[0].setDirection(0);
+        else if (Keyboard::isKeyPressed(Keyboard::S)) paddles[0].setDirection(1);
+        else paddles[0].setDirection(2);
 
-        if (Keyboard::isKeyPressed(Keyboard::Up)) paddles[1].dir = 0;
-        else if (Keyboard::isKeyPressed(Keyboard::Down)) paddles[1].dir = 1;
-        else paddles[1].dir = 2;
+        if (Keyboard::isKeyPressed(Keyboard::Up)) paddles[1].setDirection(0);
+        else if (Keyboard::isKeyPressed(Keyboard::Down)) paddles[1].setDirection(1);
+        else paddles[1].setDirection(2);
 
         // Start The Game By Pressing "SPACE"
         if (Keyboard::isKeyPressed(Keyboard::Space))
@@ -82,17 +82,17 @@ int main() {
         }
 
         // Check Collision
-        Collision(ball, paddles[1], paddles[0], paddle, score, paddles[0].score, paddles[1].score);
+        Collision(ball, paddles[1], paddles[0], paddle, score, paddles[0].getScore(), paddles[1].getScore());
 
-        paddles[0].movePaddles(ball); 
-        paddles[1].movePaddles(ball);
+        paddles[0].movePaddle(ball); 
+        paddles[1].movePaddle(ball);
         ball.moveBall();
         gameOver(ball, paddles[0], paddles[1]);
-        updateScore(paddles[0].score, paddles[1].score, window);
+        updateScore(paddles[0].getScore(), paddles[1].getScore(), window);
         
         // Draw
-        paddles[0].drawPaddles(window);
-        paddles[1].drawPaddles(window);
+        paddles[0].drawPaddle(window);
+        paddles[1].drawPaddle(window);
         ball.drawBall(window);
         window.draw(scoreSprite);
         

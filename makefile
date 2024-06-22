@@ -15,14 +15,14 @@ EXECUTABLE = $(BIN)/mi-proyecto-juego
 # Regla para compilar los objetos
 $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(OBJ)
-    $(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
 # Regla para crear el ejecutable
 $(EXECUTABLE): $(OBJECTS)
-    $(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
 
 # Limpiar archivos generados
 clean:
-    rm -rf $(OBJ) $(BIN)/*
+	rm -rf $(OBJ) $(BIN)/*
 
 .PHONY: all clean
