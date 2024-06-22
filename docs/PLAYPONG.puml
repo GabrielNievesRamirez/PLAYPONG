@@ -1,0 +1,55 @@
+@startuml
+
+class Paddle {
+    - pos: Vector2f
+    - texture: Texture
+    - speed: float
+    - dir: int
+    - score: int
+    
+    + InitPaddle(filename: string): void
+    + MovePaddle(ball: Ball&): void
+    + DrawPaddle(window: RenderWindow&): void
+}
+
+class Ball {
+    - pos: Vector2f
+    - texture: Texture
+    - speed: Vector2f
+    
+    + InitBall(filename: string): void
+    + MoveBall(): void
+    + DrawBall(window: RenderWindow&): void
+}
+
+class Collision {
+    - ball: Ball
+    - paddle1: Paddle
+    - paddle2: Paddle
+    
+    + Collision(ball: Ball, paddle1: Paddle, paddle2: Paddle)
+    + CheckCollision(): void
+    + UpdateScore(p1Score: int, p2Score: int, window: RenderWindow&): void
+}
+
+class Score {
+    - texture: Texture
+    - sprite: Sprite
+    
+    + CreateNumberSprites(window: RenderWindow&): void
+    + UpdateScoreDisplay(score1: int, score2: int, window: RenderWindow&): void
+}
+
+class GameOver {
+    - collision: Collision
+    
+    + CheckGameOver(ball: Ball, paddle1: Paddle, paddle2: Paddle): void
+    + DrawGameOverScreen(window: RenderWindow&): void
+}
+
+Paddle "1" --* "usa" Ball : usa
+Collision "1" o-- "verifica estado de" Paddle : verifica estado de
+Score "1" o-- "es mostrado por" Paddle : es mostrado por
+GameOver "1" *-- "tiene" Collision : tiene
+
+@enduml

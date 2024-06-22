@@ -1,46 +1,31 @@
-#pragma once
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <string>
-#include "ball.h"
+// Paddle.h
+#ifndef PADDLE_H
+#define PADDLE_H
 
-using namespace sf;
-using namespace std;
+#include <SFML/Graphics.hpp>
 
 class Paddle {
+private:
+    sf::Vector2f pos;
+    sf::Texture texture;
+    float speed;
+    int direction;
+    int score;
+
 public:
-	Texture texture;
-	Sprite sprite;
-	Vector2f pos;
-	float dir, speed;
-	int score;
-	void initPaddles(string texture_path)
-	{
-		texture.loadFromFile(texture_path);
-		sprite.setTexture(texture);
-		sprite.setPosition(pos);
-	}
+    void InitPaddle(std::string filename);
+    void MovePaddle(Ball& ball);
+    void DrawPaddle(sf::RenderWindow& window);
 
-	void movePaddles(Ball& ball)
-	{
-		//E�er topun h�z� 1.5 f den b�y�kse paddle h�z� *= 2f;
-		if (abs(ball.speed.x) < 1.5f) speed = 1.f;
-		else					speed = 2.f;
+    void SetPosition(sf::Vector2f position);
+    void SetSpeed(float speed);
+    void SetDirection(int dir);
+    void SetScore(int score);
 
-		if (dir == 0) pos.y -= speed;
-		if (dir == 1) pos.y += speed;
-		if (dir == 2) pos.y = pos.y;
-
-		// Collision With Boundaries
-		if (pos.y < 4) pos.y = 4;
-		if (pos.y > 604) pos.y = 604;
-		sprite.setPosition(pos);
-	}
-
-	void drawPaddles(RenderWindow& window)
-	{
-		window.draw(sprite);
-	}
+    sf::Vector2f GetPosition() const;
+    float GetSpeed() const;
+    int GetDirection() const;
+    int GetScore() const;
 };
- 
+
+#endif // PADDLE_H

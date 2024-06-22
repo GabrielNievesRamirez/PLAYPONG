@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
-#include "Paddle.h"       // Cambiado a Paddle.h según la clase refactorizada
+#include "Paddle.h"
 #include "Ball.h"
 #include "Collision.h"
 #include "Score.h"
@@ -30,30 +30,29 @@ int main() {
 
     // Initializing Paddles
     Paddle paddles[2];
-    paddles[0].setPosition(Vector2f(20, 305));
-    paddles[1].setPosition(Vector2f(W - 20 - 20, 305));
-    paddles[0].initPaddle("stick_1.png");
-    paddles[1].initPaddle("stick_2.png");
-    paddles[0].setSpeed(1.f);
-    paddles[1].setSpeed(1.f);
-    paddles[0].setDirection(2);
-    paddles[1].setDirection(2);
-    paddles[0].setScore(0);
-    paddles[1].setScore(0);
+    paddles[0].SetPosition(Vector2f(20, 305));
+    paddles[1].SetPosition(Vector2f(W - 20 - 20, 305));
+    paddles[0].InitPaddle("stick_1.png");
+    paddles[1].InitPaddle("stick_2.png");
+    paddles[0].SetSpeed(1.f);
+    paddles[1].SetSpeed(1.f);
+    paddles[0].SetDirection(2);
+    paddles[1].SetDirection(2);
+    paddles[0].SetScore(0);
+    paddles[1].SetScore(0);
 
     // Initializing Ball
     Ball ball;
-    ball.setPosition(Vector2f(626, 346));
-    ball.initBall("ball.png");
-    ball.setSpeed(Vector2f(0, 0));
+    ball.SetPosition(Vector2f(626, 346));
+    ball.InitBall("ball.png");
+    ball.SetSpeed(Vector2f(0, 0));
 
-    // Score Text
-    Texture scText;
-    Sprite scoreSprite;
-    scText.loadFromFile("score.png");
-    scoreSprite.setTexture(scText);
-    scoreSprite.setPosition(546, 35);
-    createNumberSprites(window);
+    // Initializing Collision
+    Collision collision(ball, paddles[0], paddles[1], paddle, score);
+
+    // Score Display
+    Score scoreDisplay;
+    scoreDisplay.CreateNumberSprites(window);
 
     while (window.isOpen())
     {
@@ -67,13 +66,13 @@ int main() {
         window.clear(Color::Black);
 
         // Game Input Logic
-        if (Keyboard::isKeyPressed(Keyboard::W)) paddles[0].setDirection(0);
-        else if (Keyboard::isKeyPressed(Keyboard::S)) paddles[0].setDirection(1);
-        else paddles[0].setDirection(2);
+        if (Keyboard::isKeyPressed(Keyboard::W)) paddles[0].SetDirection(0);
+        else if (Keyboard::isKeyPressed(Keyboard::S)) paddles[0].SetDirection(1);
+        else paddles[0].SetDirection(2);
 
-        if (Keyboard::isKeyPressed(Keyboard::Up)) paddles[1].setDirection(0);
-        else if (Keyboard::isKeyPressed(Keyboard::Down)) paddles[1].setDirection(1);
-        else paddles[1].setDirection(2);
+        if (Keyboard::isKeyPressed(Keyboard::Up)) paddles[1].SetDirection(0);
+        else if (Keyboard::isKeyPressed(Keyboard::Down)) paddles[1].SetDirection(1);
+        else paddles[1].SetDirection(2);
 
         // Start The Game By Pressing "SPACE"
         if (Keyboard::isKeyPressed(Keyboard::Space))
@@ -82,19 +81,19 @@ int main() {
         }
 
         // Check Collision
-        Collision(ball, paddles[1], paddles[0], paddle, score, paddles[0].getScore(), paddles[1].getScore());
+        collision.CheckCollision();
 
-        paddles[0].movePaddle(ball); 
-        paddles[1].movePaddle(ball);
-        ball.moveBall();
-        gameOver(ball, paddles[0], paddles[1]);
-        updateScore(paddles[0].getScore(), paddles[1].getScore(), window);
+        paddles[0].MovePaddle(ball); 
+        paddles[1].MovePaddle(ball);
+        ball.MoveBall();
+        GameOver::CheckGameOver(ball, paddles[0], paddles[1]);
+        collision.UpdateScore(paddles[0].GetScore(), paddles[1].GetScore(), window);
         
         // Draw
-        paddles[0].drawPaddle(window);
-        paddles[1].drawPaddle(window);
-        ball.drawBall(window);
-        window.draw(scoreSprite);
+        paddles[0].DrawPaddle(window);
+        paddles[1].DrawPaddle(window);
+        ball.DrawBall(window);
+        scoreDisplay.UpdateScoreDisplay(paddles[0].GetScore(), paddles[1].GetScore(), window);
         
         // Display
         window.display();
