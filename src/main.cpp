@@ -1,8 +1,8 @@
-include <SFML/Window.hpp>
+#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
-#include "sticks.h"
+#include "sticks.h"       // Incluye sticks.h desde el directorio include
 #include "ball.h"
 #include "collision.h"
 #include "score.h"
