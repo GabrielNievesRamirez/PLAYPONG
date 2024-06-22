@@ -14,7 +14,7 @@ EXECUTABLE = $(BIN)/mi-proyecto-juego
 
 # Regla para compilar los objetos
 $(OBJ)/%.o: $(SRC)/%.cpp
-    @mkdir -p $(OBJ)
+	@mkdir -p $(OBJ)
     $(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
 
 # Regla para crear el ejecutable
