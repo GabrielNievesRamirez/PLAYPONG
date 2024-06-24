@@ -19,16 +19,6 @@ void whoStartsTheGame(Paddle& paddle1, Paddle& paddle2, Ball& ball) {
 }
 
 int main() {
-    // Sound Effects
-    SoundBuffer buf_0, buf_1, buf_2;
-    buf_0.loadFromFile("paddle.wav");
-    buf_1.loadFromFile("wall.wav");
-    buf_2.loadFromFile("score.wav");
-    Sound paddle, wall, score;
-    paddle.setBuffer(buf_0);
-    wall.setBuffer(buf_1);
-    score.setBuffer(buf_2);
-
     // Window
     RenderWindow window(VideoMode(W, H), "Pong!");
     window.setKeyRepeatEnabled(true);
@@ -54,7 +44,7 @@ int main() {
     ball.SetSpeed(Vector2f(0, 0));
 
     // Initializing Collision
-    Collision collision(ball, paddles[0], paddles[1], paddle, score);
+    Collision collision(ball, paddles[0], paddles[1]);
 
     // Score Display
     Score scoreDisplay;
