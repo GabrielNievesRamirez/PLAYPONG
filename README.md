@@ -1,4 +1,4 @@
-
+### README para el juego PlayPong
 
 #### Visión General
 PlayPong es una implementación simple del clásico juego Pong utilizando SFML (Simple and Fast Multimedia Library). Permite a dos jugadores controlar paletas y competir entre sí para anotar puntos al hacer pasar una pelota más allá de la paleta del oponente.
@@ -41,15 +41,21 @@ PlayPong es una implementación simple del clásico juego Pong utilizando SFML (
 4. **Gana puntos** al hacer pasar la pelota más allá de la paleta del oponente.
 5. **El juego termina** cuando un jugador alcanza la puntuación determinada como la puntuación ganadora.
 
-#### Imágenes de Paletas
-A continuación se muestran las imágenes de las paletas utilizadas en el juego:
+#### Imágenes
+A continuación se muestran algunas imágenes del juego:
 
-![Paleta de Jugador 1](stick_1.png)
-*Paleta de Jugador 1 (Paleta Izquierda)*
+- **Paleta de Jugador 1 (Paleta Izquierda)**:
+  ![Paleta de Jugador 1](stick_1.png)
 
-![Paleta de Jugador 2](stick_2.png)
-*Paleta de Jugador 2 (Paleta Derecha)*
+- **Paleta de Jugador 2 (Paleta Derecha)**:
+  ![Paleta de Jugador 2](stick_2.png)
+
+- **Bola del Juego**:
+  ![Bola del Juego](ball.png)
+
+- **Marcador de Puntuación**:
+  ![Marcador de Puntuación](score.png)
 
 ---
 
-Este README proporciona una descripción general del juego PlayPong, incluyendo imágenes de las paletas utilizadas para una mejor comprensión del juego.
+Este README proporciona una descripción general del juego PlayPong, incluyendo imágenes de las paletas, la bola y el marcador de puntuación utilizados para una mejor comprensión del juego.
