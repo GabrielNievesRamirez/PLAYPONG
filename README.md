@@ -1,5 +1,8 @@
-# PLAYPONG
+
+
+#### Visión General
 PlayPong es una implementación simple del clásico juego Pong utilizando SFML (Simple and Fast Multimedia Library). Permite a dos jugadores controlar paletas y competir entre sí para anotar puntos al hacer pasar una pelota más allá de la paleta del oponente.
+
 #### Características
 - **Juego para Dos Jugadores**: Los jugadores controlan las paletas usando entradas del teclado ('W', 'S' para el Jugador 1 y flechas para el Jugador 2).
 - **Inicio del Juego**: Presiona 'Espacio' para iniciar o reiniciar el juego.
@@ -9,6 +12,15 @@ PlayPong es una implementación simple del clásico juego Pong utilizando SFML (
 
 #### Requisitos
 - Biblioteca SFML para C++
+- Archivos de sonido (`paddle.wav`, `wall.wav`, `score.wav`) para efectos de juego
+
+#### Instalación y Configuración
+1. **Instalación de SFML**: Asegúrate de tener SFML instalado en tu sistema. Puedes descargarlo desde [Descargas de SFML](https://www.sfml-dev.org/download.php).
+   
+2. **Compilar y Ejecutar**:
+   - Compila el código utilizando tu compilador de C++ preferido con SFML enlazado.
+   - Asegúrate de colocar los archivos de sonido (`paddle.wav`, `wall.wav`, `score.wav`) en el mismo directorio que el ejecutable o ajusta las rutas de los archivos en el código según sea necesario.
+
 #### Controles
 - **Jugador 1 (Paleta Izquierda)**:
   - Mover Arriba: `W`
@@ -22,4 +34,22 @@ PlayPong es una implementación simple del clásico juego Pong utilizando SFML (
   - Iniciar Juego: `Espacio`
   - Salir del Juego: `Esc` o cerrar la ventana
 
-  ![NO se pudo cargar la imagen :(](ball.png)
+#### Cómo Jugar
+1. **Ejecuta el juego** después de compilarlo correctamente.
+2. **Presiona `Espacio`** para iniciar el juego.
+3. **Usa los controles mencionados** para mover las paletas y golpear la pelota.
+4. **Gana puntos** al hacer pasar la pelota más allá de la paleta del oponente.
+5. **El juego termina** cuando un jugador alcanza la puntuación determinada como la puntuación ganadora.
+
+#### Imágenes de Paletas
+A continuación se muestran las imágenes de las paletas utilizadas en el juego:
+
+![Paleta de Jugador 1](stick_1.png)
+*Paleta de Jugador 1 (Paleta Izquierda)*
+
+![Paleta de Jugador 2](stick_2.png)
+*Paleta de Jugador 2 (Paleta Derecha)*
+
+---
+
+Este README proporciona una descripción general del juego PlayPong, incluyendo imágenes de las paletas utilizadas para una mejor comprensión del juego.
