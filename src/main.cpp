@@ -12,6 +12,12 @@ using namespace sf;
 
 int W = 1280, H = 720;
 
+void whoStartsTheGame(Paddle& paddle1, Paddle& paddle2, Ball& ball) {
+    // Lógica para determinar quién inicia el juego
+    // Esto es un ejemplo y deberías implementar tu propia lógica aquí
+    ball.SetSpeed(Vector2f(5.f, 5.f)); // Ejemplo de velocidad inicial
+}
+
 int main() {
     // Sound Effects
     SoundBuffer buf_0, buf_1, buf_2;
@@ -83,10 +89,15 @@ int main() {
         // Check Collision
         collision.CheckCollision();
 
-        paddles[0].MovePaddle(ball); 
+        // Move Paddles and Ball
+        paddles[0].MovePaddle(ball);
         paddles[1].MovePaddle(ball);
         ball.MoveBall();
+
+        // Check Game Over
         GameOver::CheckGameOver(ball, paddles[0], paddles[1]);
+
+        // Update Score
         collision.UpdateScore(paddles[0].GetScore(), paddles[1].GetScore(), window);
         
         // Draw

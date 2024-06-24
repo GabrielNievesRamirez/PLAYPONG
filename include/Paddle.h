@@ -3,6 +3,7 @@
 #define PADDLE_H
 
 #include <SFML/Graphics.hpp>
+#include "Ball.h" // Incluir Ball.h para usar Ball
 
 class Paddle {
 private:
@@ -14,7 +15,7 @@ private:
 
 public:
     void InitPaddle(std::string filename);
-    void MovePaddle(Ball& ball);
+    void MovePaddle(Ball& ball); // Corregir para que acepte Ball&
     void DrawPaddle(sf::RenderWindow& window);
 
     void SetPosition(sf::Vector2f position);
