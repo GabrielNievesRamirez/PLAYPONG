@@ -51,7 +51,7 @@ A continuación se muestran algunas imágenes del juego:
   ![Paleta de Jugador 2](stick_2.png)
 
 - **Bola del Juego**:
-  ![Bola del Juego](ball.png)
+  ![Bola del Juego](ball (1).png)
 
 - **Marcador de Puntuación**:
   ![Marcador de Puntuación](score.png)
