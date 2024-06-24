@@ -22,4 +22,4 @@ PlayPong es una implementación simple del clásico juego Pong utilizando SFML (
   - Iniciar Juego: `Espacio`
   - Salir del Juego: `Esc` o cerrar la ventana
 
-  ![Texto alternativo](Ball.png)
+  ![Texto alternativo](ball.png)
